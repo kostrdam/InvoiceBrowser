@@ -1,10 +1,13 @@
-import { Drawer, Divider } from "@mui/material";
+import { Drawer, Divider, Typography } from "@mui/material";
 import NavItem from "./NavItem";
 
 const Sidebar = () => {
     return (
         <Drawer anchor="left" variant='permanent'>
-            {/* <Divider /> */}
+            <div>
+                <Typography variant="h5">Invoice Browser</Typography>
+            </div>
+            <Divider />
             <NavItem to='/home' text='Home' />
             <NavItem to='/invoices' text='Invoices' />
             <NavItem to='/items/' text='Items' />

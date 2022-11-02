@@ -1,5 +1,5 @@
 const Home = () => {
-    return <h1>Welcome to Invoice Browser</h1>
+    return <h1>HOME COMPONENT</h1>
 }
 
 export default Home;
