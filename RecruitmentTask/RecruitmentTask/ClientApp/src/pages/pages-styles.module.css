@@ -1,0 +1,63 @@
+.newInvoiceSection {
+  margin-top: 80px;
+  margin-left: 20px;
+}
+
+.newInvoiceBox {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.newInvoiceField {
+  margin-bottom: 20px !important;
+}
+
+.newInvoiceButton {
+  margin-top: 20px !important;
+  width: 200px;
+  height: 50px;
+}
+
+.invoicesSection {
+  margin-top: 80px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.invoicesToolbar {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.invoicesDatePickerBox {
+  margin-right: 20px;
+}
+
+.invoicesSearchBtn {
+  margin-left: 50px !important;
+  width: 150px;
+  height: 50px;
+}
+
+.invoiceDetailsSection {
+  margin-top: 100px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.invoiceDetailsBox {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.invoiceDetailsField {
+  margin-bottom: 30px !important;
+}
+
+.invoiceDetailsBackBtn {
+  margin-bottom: 30px !important;
+  height: 50px;
+  width: 150px;
+}

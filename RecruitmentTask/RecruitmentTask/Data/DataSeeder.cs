@@ -1,52 +1,89 @@
-﻿namespace RecruitmentTask.Data
+﻿using Microsoft.EntityFrameworkCore;
+using RecruitmentTask.Data.Model;
+
+namespace RecruitmentTask.Data
 {
-    public class DataSeeder
+    public static class DataSeeder
     {
-        public IEnumerable<Item> SeedItems()
+        public static List<Item> Items = new List<Item>()
         {
-            var items = new List<Item>();
-            items.Add(new Item { Name = "Guitar", Price = 1000 });
-            items.Add(new Item { Name = "Book", Price = 50 });
-            items.Add(new Item { Name = "Tomato", Price = 2 });
-            items.Add(new Item { Name = "Shoes", Price = 200 });
-            items.Add(new Item { Name = "Jacket", Price = 500 });
+            new Item { Id = 1, Name = "Guitar", Price = 1000 },
+            new Item { Id = 2, Name = "Book", Price = 50 },
+            new Item { Id = 3, Name = "Tomato", Price = 2 },
+            new Item { Id = 4, Name = "Shoes", Price = 200 },
+            new Item { Id = 5, Name = "Jacket", Price = 500 }
+        };
 
-            return items;
-        }
-
-        public IEnumerable<Invoice> SeedInvoices(List<Item> items)
+        public static List<Invoice> Invoices = new List<Invoice>()
         {
-            var invoices = new List<Invoice>();
-            invoices.Add(new Invoice
+            new Invoice
             {
+                Id = 1,
                 Name = "Invoice 1",
-                Number = "FV 1/10/2022",
+                Number = "FV 03/11/2022",
                 AccountNumber = "1234",
                 InvoiceDate = DateTime.Now,
                 PaymentDate = DateTime.Now.AddDays(7),
-                Items = new List<Item> { items[0], items[1] }
-            });
-
-            invoices.Add(new Invoice
+            },
+            new Invoice
             {
+                Id = 2,
                 Name = "Invoice 2",
-                Number = "FV 2/10/2022",
+                Number = "FV 25/04/2012",
                 AccountNumber = "4321",
-                InvoiceDate = DateTime.Now.AddDays(1),
-                PaymentDate = DateTime.Now.AddDays(8),
-                Items = new List<Item> { items[1], items[2], items[3] }
-            });
-
-            invoices.Add(new Invoice
+                InvoiceDate = new DateTime(2012, 04, 25),
+                PaymentDate = new DateTime(2012, 04, 30)
+            },
+            new Invoice
             {
+                Id = 3,
                 Name = "Invoice 3",
-                Number = "FV 3/10/2022",
+                Number = "FV 25/04/2032",
                 AccountNumber = "2233",
-                InvoiceDate = DateTime.Now.AddDays(2),
-                PaymentDate = DateTime.Now.AddDays(9),
-                Items = new List<Item> { items[3], items[4], items[4] }
-            });
-            return invoices;
+                InvoiceDate = new DateTime(2032, 04, 25),
+                PaymentDate = new DateTime(2032, 04, 25),
+            }
+
+        };
+
+        public static IEnumerable<InvoiceItem> SeedInvoiceItems()
+        {
+            var counter = 0;
+            return new List<InvoiceItem>()
+            {
+                //invoice 1:
+                AddItemToInvoice(ref counter, Invoices[0], Items[0], 1),
+                AddItemToInvoice(ref counter, Invoices[0], Items[1], 2),
+
+                //invoice 2:
+                AddItemToInvoice(ref counter, Invoices[1], Items[1], 3),
+                AddItemToInvoice(ref counter, Invoices[1], Items[2], 7),
+
+                //invoice 3:
+                AddItemToInvoice(ref counter, Invoices[2], Items[3], 12),
+                AddItemToInvoice(ref counter, Invoices[2], Items[4], 5)
+            };
+        }
+
+        private static InvoiceItem AddItemToInvoice(ref int counter, Invoice invoice, Item item, int quantity)
+        {
+            counter++;
+            return new InvoiceItem { Id = counter, InvoiceId = invoice.Id, ItemId = item.Id, Quantity = quantity};
+        }
+
+        public static void SeedUpdate(ApplicationDbContext context)
+        {
+            var invoices = context.Invoices
+                .Include(i => i.InvoiceItems)
+                .ThenInclude(i => i.Item)
+                .ToList();
+
+            foreach (var invoice in invoices)
+            {
+                invoice.TotalAmount = invoice.InvoiceItems.Sum(x => x.Item.Price * x.Quantity);
+            }
+
+            context.SaveChanges();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RecruitmentTask.Data.Model;
 
-namespace RecruitmentTask.Data
+namespace RecruitmentTask.Data.Model
 {
     /// <summary>Item model</summary>
     public class Item
@@ -16,6 +17,6 @@ namespace RecruitmentTask.Data
         public decimal Price { get; set; }
 
         /// <summary>Invoice items</summary>
-        public IEnumerable<Invoice> Invoices { get; set; }
+        public IEnumerable<InvoiceItem> Invoices { get; set; }
     }
 }

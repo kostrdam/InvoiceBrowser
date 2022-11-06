@@ -1,0 +1,13 @@
+.sidebarItem {
+    width: 200px;
+}
+
+.invoicesTableRow:hover {
+    background-color: rgb(213, 213, 235);
+    cursor: pointer;
+}
+
+.tableHeader {
+  font-weight: bold !important;
+  font-size: medium !important;
+}

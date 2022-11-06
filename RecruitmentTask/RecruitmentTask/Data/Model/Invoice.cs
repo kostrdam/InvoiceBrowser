@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RecruitmentTask.Data.Model;
 
-namespace RecruitmentTask.Data
+namespace RecruitmentTask.Data.Model
 {
     /// <summary>Invoice model</summary>
     public class Invoice
@@ -24,7 +25,7 @@ namespace RecruitmentTask.Data
         public string AccountNumber { get; set; }
 
         /// <summary>List of invoice items</summary>
-        public IEnumerable<Item> Items { get; set; }
+        public IEnumerable<InvoiceItem> InvoiceItems { get; set; }
 
         /// <summary>Total amount</summary>
         [Precision(19, 4)]

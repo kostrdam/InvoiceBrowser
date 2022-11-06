@@ -1,11 +1,15 @@
 import { NavLink } from "react-router-dom";
-import { ListItem, ListItemText } from "@mui/material";
+import { ListItem, ListItemButton, ListItemText } from "@mui/material";
+
+import styles from './component-styles.module.css';
 
 const NavItem = (props) => {
     return (
-        <ListItem>
+        <ListItem disablePadding >
             <NavLink to={props.to}>
-                <ListItemText>{props.text}</ListItemText>
+                <ListItemButton className={styles.sidebarItem}>
+                    <ListItemText>{props.text}</ListItemText>
+                </ListItemButton>
             </NavLink>
         </ListItem>
     )

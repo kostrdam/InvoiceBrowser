@@ -3,22 +3,26 @@
 namespace RecruitmentTask.Dto
 {
     /// <summary>Item data transfer object</summary>
-    public class ItemDto
+    public class InvoiceItemDto
     {
         /// <summary>Id</summary>
         [JsonPropertyName("id")]
         public int Id { get; set; }
 
-        /// <summary>Name</summary>
+        /// <summary>Item name</summary>
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("price")]
         /// <summary>Price</summary>
+        [JsonPropertyName("price")]
         public decimal Price { get; set; }
 
+        /// <summary>Quantity</summary>
+        [JsonPropertyName("quantity")]
+        public int Quantity { get; set; }
+
         /// <summary>Constructor</summary>
-        public ItemDto()
+        public InvoiceItemDto()
         {
             Name = string.Empty;
         }

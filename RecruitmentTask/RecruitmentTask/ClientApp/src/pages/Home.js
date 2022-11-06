@@ -1,5 +1,13 @@
 const Home = () => {
-    return <h1>HOME COMPONENT</h1>
+    return (
+        <main>
+            <h1>Welcome to Invoice Browser</h1>
+            <section>
+                it was built with....
+            </section>
+        </main>
+        
+    )
 }
 
 export default Home;

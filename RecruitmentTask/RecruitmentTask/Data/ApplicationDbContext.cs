@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RecruitmentTask.Data.Model;
 
 namespace RecruitmentTask.Data
 {
@@ -11,12 +12,16 @@ namespace RecruitmentTask.Data
         /// <summary>Invoices db set</summary>
         public DbSet<Invoice> Invoices { get; set; }
 
+        public DbSet<InvoiceItem> InvoiceItems { get; set; }
+
         /// <summary>Constructor</summary>
         /// <param name="options">Db context options</param>
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            Database.Migrate();
-            //SeedDb();
+            //Database.EnsureCreated();
+            //Database.Migrate();
+
+            //DataSeeder.SeedUpdate(this);
         }
 
         /// <summary>OnModelCreating override method</summary>
@@ -26,21 +31,23 @@ namespace RecruitmentTask.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Invoice>()
-                .HasKey(x => x.Id);
+                .HasMany(x => x.InvoiceItems)
+                .WithOne(x => x.Invoice)
+                .HasForeignKey(x => x.InvoiceId);
+            modelBuilder.Entity<Invoice>()
+                .HasData(DataSeeder.Invoices);
 
             modelBuilder.Entity<Item>()
-                .HasKey(x => x.Id);
-        }
+                .HasMany(x => x.Invoices)
+                .WithOne(x => x.Item)
+                .HasForeignKey(x => x.ItemId);
+            modelBuilder.Entity<Item>()
+                .HasData(DataSeeder.Items);
 
-        /// <summary>Seed database</summary>
-        private void SeedDb()
-        {
-            var seeder = new DataSeeder();
-            var items = seeder.SeedItems();
-            var invoices = seeder.SeedInvoices(items.ToList());
-            Items.AddRange(items);
-            Invoices.AddRange(invoices);
-            SaveChanges();
+            modelBuilder.Entity<InvoiceItem>()
+                .HasKey(x => x.Id);
+            modelBuilder.Entity<InvoiceItem>()
+                .HasData(DataSeeder.SeedInvoiceItems());
         }
     }
 }

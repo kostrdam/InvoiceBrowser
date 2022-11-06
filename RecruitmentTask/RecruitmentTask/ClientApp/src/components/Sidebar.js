@@ -1,12 +1,15 @@
-import { Drawer, Divider, Typography } from "@mui/material";
+import { Drawer, Divider, Typography, Toolbar, useTheme } from "@mui/material";
 import NavItem from "./NavItem";
 
-const Sidebar = () => {
+const Sidebar = (props) => {
+    const theme = useTheme();
     return (
         <Drawer anchor="left" variant='permanent'>
-            <div>
-                <Typography variant="h5">Invoice Browser</Typography>
-            </div>
+            <Toolbar style={{width: `${props.width}px`, height: `${props.height}px`, backgroundColor: theme.palette.primary.dark }}>
+                <Typography variant="h6">
+                    Invoice Browser
+                </Typography>
+            </Toolbar>
             <Divider />
             <NavItem to='/home' text='Home' />
             <NavItem to='/invoices' text='Invoices' />
