@@ -11,10 +11,8 @@ const ItemListRow = (props) => {
     }
 
     function removeHandler() {
-        if (quantity > 0) {
-            setQuantity(quantity - 1);
-            props.updateQuantity({id: props.data.id, quantity: quantity - 1});
-        }
+        setQuantity(quantity - 1);
+        props.updateQuantity({id: props.data.id, quantity: quantity - 1});
     }
 
     return (

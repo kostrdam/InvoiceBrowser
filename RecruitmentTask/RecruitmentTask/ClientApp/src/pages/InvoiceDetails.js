@@ -8,8 +8,6 @@ const moment = require('moment');
 const InvoiceDetails = () => {
     const params = useParams();
     const navigate = useNavigate();
-
-    // const invoice = useSelector((state) => state.api.invoices[params.invoiceId - 1]);
     const invoice = useSelector((state) => state.api.invoices.find(obj => obj.id == params.invoiceId));
 
     function onClickHandler() {
@@ -18,7 +16,6 @@ const InvoiceDetails = () => {
 
     return (
         <section className={styles.invoiceDetailsSection}>
-            {console.log("invoice", invoice)}
             <Button className={styles.invoiceDetailsBackBtn} variant="contained" onClick={onClickHandler}>Back to list</Button>
             <Typography variant="h4">{}</Typography>
             <form className={styles.invoiceDetailsBox}>
@@ -54,4 +51,3 @@ const InvoiceDetails = () => {
 }
 
 export default InvoiceDetails;
-

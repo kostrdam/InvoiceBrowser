@@ -15,7 +15,6 @@ const Invoices = () => {
         to: moment().add(30, 'd')
     }
 
-    //const [queryParams, setParams] = useState(initialParams);
     const dispatch = useDispatch();
     const invoices = useSelector(state => state.api.invoices);
 
@@ -46,7 +45,6 @@ const Invoices = () => {
 
     return (
         <section className={styles.invoicesSection}>
-            {console.log(invoices)}
             <h1>Invoices page</h1>
             <Toolbar className={styles.invoicesToolbar}>
                 <div className={styles.invoicesDatePickerBox}>

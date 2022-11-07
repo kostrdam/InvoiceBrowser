@@ -38,7 +38,7 @@ namespace RecruitmentTask.Data
                 .HasData(DataSeeder.Invoices);
 
             modelBuilder.Entity<Item>()
-                .HasMany(x => x.Invoices)
+                .HasMany(x => x.InvoiceItems)
                 .WithOne(x => x.Item)
                 .HasForeignKey(x => x.ItemId);
             modelBuilder.Entity<Item>()

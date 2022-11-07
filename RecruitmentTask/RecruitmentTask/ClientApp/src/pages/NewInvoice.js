@@ -15,14 +15,6 @@ const NewInvoice = () => {
     const [itemsArray, setItemsArray] = useState();
 
     function submitInvoiceHandler() {
-        console.log(JSON.stringify({
-            number: numberInputRef.current.value,
-            name: nameInputRef.current.value,
-            accountNumber: accountInputRef.current.value,
-            paymentDate: dateInputRef.current.value,
-            invoiceItems: itemsArray
-        }));
-
         fetch(`${paths.API_URL}/${paths.INVOICES_URL}`, {
             headers: {
                 'Accept': 'application/json',
@@ -45,9 +37,7 @@ const NewInvoice = () => {
     }
     
     function updateItemsHandler(itemsNewArray) {
-        console.log("PRZED DODANIEM", itemsArray);
         setItemsArray([...itemsNewArray]);
-        console.log("PO DODANIU", itemsArray);
     }
 
     return (

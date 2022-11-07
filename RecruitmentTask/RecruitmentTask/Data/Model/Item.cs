@@ -17,6 +17,6 @@ namespace RecruitmentTask.Data.Model
         public decimal Price { get; set; }
 
         /// <summary>Invoice items</summary>
-        public IEnumerable<InvoiceItem> Invoices { get; set; }
+        public IEnumerable<InvoiceItem> InvoiceItems { get; set; }
     }
 }

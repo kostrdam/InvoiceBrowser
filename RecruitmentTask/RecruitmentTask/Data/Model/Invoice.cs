@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RecruitmentTask.Data.Model;
 
 namespace RecruitmentTask.Data.Model
 {

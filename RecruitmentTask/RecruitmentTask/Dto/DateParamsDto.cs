@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace RecruitmentTask.Dto
+﻿namespace RecruitmentTask.Dto
 {
     /// <summary>Date query parameters DTO</summary>
     public class DateParamsDto

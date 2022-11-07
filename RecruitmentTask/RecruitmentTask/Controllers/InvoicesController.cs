@@ -83,14 +83,6 @@ namespace RecruitmentTask.Controllers
                 var items = await _dbContext.Items
                     .Where(i => Ids.Contains(i.Id)).ToListAsync();
 
-
-
-                //.Join(newInvoice.InvoiceItems,
-                //        item => item.Id,
-                //        invoiceItem => invoiceItem.ItemId,
-                //        (item, invoiceItem) => new { Item = item, Quantity = invoiceItem.Quantity })
-                //    .ToListAsync();
-
                 newInvoice.TotalAmount = newInvoice.InvoiceItems.Sum(invoiceItem =>
                     items.First(item => item.Id.Equals(invoiceItem.ItemId)).Price * invoiceItem.Quantity);
                 
@@ -100,13 +92,9 @@ namespace RecruitmentTask.Controllers
                     invoiceItem.Item = items.FirstOrDefault(i => i.Id == invoiceItem.ItemId);
                 }
 
-
-
-                //newInvoice.TotalAmount = items.Sum(x => (x.Item.Price * x.Quantity));
                 var invoice = await _dbContext.Invoices.AddAsync(newInvoice);
                 await _dbContext.SaveChangesAsync();
-                //return CreatedAtAction(nameof(GetById), new { id = invoice.Entity.Id }, invoice);
-                return Ok();
+                return StatusCode(StatusCodes.Status201Created);
             }
             catch (Exception ex)
             {

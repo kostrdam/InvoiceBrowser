@@ -1,22 +1,23 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = { 
+const initialApiState = {
     invoices: [],
-    items: [],
-    itemList: []
+    items: []
 }
 
 //remarks: You can mutate state in Slice object. ReduxToolkit handles this!
 const apiSlice = createSlice({
     name: 'api',
-    initialState: initialState,
+    initialState: initialApiState,
     reducers: {
         getInvoices(state, action) {
-            state.invoices = action.payload
+            console.log("STATE BEFORE", state.invoices);
+            state.invoices = action.payload;
+            console.log("STATE AFTER", state);
         },
         getItems(state, action) {
-            state.items = action.payload
+            state.items = action.payload;
         }
     }
 });
