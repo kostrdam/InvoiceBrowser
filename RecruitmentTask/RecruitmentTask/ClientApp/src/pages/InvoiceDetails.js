@@ -8,7 +8,7 @@ const moment = require('moment');
 const InvoiceDetails = () => {
     const params = useParams();
     const navigate = useNavigate();
-    const invoice = useSelector((state) => state.api.invoices.find(obj => obj.id == params.invoiceId));
+    const invoice = useSelector((state) => state.api.invoices.find(obj => obj.id === params.invoiceId));
 
     function onClickHandler() {
         navigate('/invoices');

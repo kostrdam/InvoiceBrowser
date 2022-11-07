@@ -25,18 +25,19 @@ const ItemList = (props) => {
 
     function countItemsHandler(addedItem) {
         let index = itemsArray.findIndex(item => item.id === addedItem.id);
+        let newItemsArray = [...itemsArray];
         if (index > -1) {
             if (addedItem.quantity < 1) {
-                itemsArray.splice(index, 1);
+                newItemsArray.splice(index, 1);
+                setItemsArray(newItemsArray);
             }
             else {
-                itemsArray[index].quantity = addedItem.quantity;
+                newItemsArray[index].quantity = addedItem.quantity;
+                setItemsArray(newItemsArray);
             }
-            console.log(itemsArray);
         }
         else {
-            itemsArray.push(addedItem);
-            console.log(itemsArray);
+            setItemsArray([...itemsArray, {id: addedItem.id, quantity: addedItem.quantity}]);
         }
         props.updateItems(itemsArray);
     }
